@@ -2,8 +2,10 @@ name: pandoc-researchhacking
 version: 2.9.2.1
 summary: Tool for converting from one markup format to another
 description: |
-  Pandoc is a Haskell library for converting from one markup format to another, and a command-line tool that uses this library.
-confinement: devmode
+  Pandoc is a Haskell library for converting from one markup format to
+  another, and a command-line tool that uses this library.
+confinement: strict
+grade: stable
 base: core18
 
 parts:
@@ -12,5 +14,14 @@ parts:
     source: https://github.com/jgm/pandoc/releases/download/$SNAPCRAFT_PROJECT_VERSION/pandoc-$SNAPCRAFT_PROJECT_VERSION-linux-amd64.tar.gz
 
 apps:
-  pandoc-researchhacking:
-    command: pandoc
+  pandoc:
+    command: bin/pandoc
+    plugs:
+      - home
+      - removable-media
+
+  pandoc-citeproc:
+    command: bin/pandoc-citeproc
+    plugs:
+      - home
+      - removable-media
